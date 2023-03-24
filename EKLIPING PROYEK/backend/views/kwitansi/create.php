@@ -11,10 +11,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="card card-outline card-warning">
-	<div class="card-body">
-		<?= $this->render('_form', [
-	        'model' => $model,
-	    ]) ?>
+
+    <!-- <h1>?= Html::encode($this->title) ?></h1> -->
+
+    <div class="box box-solid box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+        </div>
+            <div class="box-body">
+			<?= $this->render('_form', [
+				'model' => $model,
+			]) ?>
+		</div>
 	</div>
 
 </div>

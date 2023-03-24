@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="kwitansi-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1>?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Update', ['update', 'id_kwitansi' => $model->id_kwitansi], ['class' => 'btn btn-primary']) ?>
@@ -25,23 +25,30 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id_kwitansi',
-            'id_media',
-            'nilai_kontrak',
-            'jumlah_berita',
-            'minimal_berita',
-            'harga_perberita',
-            'total_bayar',
-            'bulan',
-            'tahun',
-            'status_cetak',
-            'create_at',
-            'create_by',
-        ],
-    ]) ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success box-solid">
+                <div class="box-body">
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'attributes' => [
+                            'id_kwitansi',
+                            'id_media',
+                            'nilai_kontrak',
+                            'jumlah_berita',
+                            'minimal_berita',
+                            'harga_perberita',
+                            'total_bayar',
+                            'bulan',
+                            'tahun',
+                            'status_cetak',
+                            'create_at',
+                            'create_by',
+                        ],
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
