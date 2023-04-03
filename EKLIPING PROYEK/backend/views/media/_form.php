@@ -20,6 +20,12 @@ use yii\widgets\ActiveForm;
 
                     <?= $form->field($model, 'jenis_media')->textInput(['maxlength' => true]) ?>
 
+                    <?= $form->field($model, 'nilai_kontrak')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'minimal_berita')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'harga_perberita')->textInput(['maxlength' => true]) ?>
+
                     <div class="form-group">
                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
                     </div>

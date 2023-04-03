@@ -19,14 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-header with-border">
                     <h3 class="box-title">Judul : <?= $model->judul_berita ?></h3>
                     <div class="box-tools pull-right">
-                        <?= Html::a('<i class="fa fa-undo" aria-hidden="true"></i> Update', ['update', 'id_berita' => $model->id_berita], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a('<i class="fa fa-trash" aria-hidden="true"></i> Delete', ['delete', 'id_berita' => $model->id_berita], [
+                        <?php
+                        $update = Html::a('<i class="fa fa-undo" aria-hidden="true"></i> Update', ['update', 'id_berita' => $model->id_berita], ['class' => 'btn btn-primary']);
+                        $hapus = Html::a('<i class="fa fa-trash" aria-hidden="true"></i> Delete', ['delete', 'id_berita' => $model->id_berita], [
                             'class' => 'btn btn-danger',
                             'data' => [
                                 'confirm' => 'Are you sure you want to delete this item?',
                                 'method' => 'post',
                             ],
-                        ]) ?>
+                        ]);
+
+                        $roleName = Yii::$app->user->identity->role->name;
+                        if($roleName == 'Media') {
+                            echo $update.' '.$hapus;
+                        }else{
+                            echo ' ';
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="box-body">

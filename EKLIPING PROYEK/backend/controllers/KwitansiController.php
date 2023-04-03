@@ -74,14 +74,12 @@ class KwitansiController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) ) {
-                
+                $model->status_cetak=1;//belum dicetak
                 //membuat encrytion data agar tidak di manipulasi
                 if(empty($model->hash_data)){
                     $encrypt_data =  Yii::$app->getSecurity()->generateRandomString(30);
                     $model->hash_data = $encrypt_data;
                 }
-
-                $model->status_cetak=1;//belum dicetak
                 $model->save(false);
                 return $this->redirect(['view', 'id_kwitansi' => $model->id_kwitansi]);
             }
@@ -113,7 +111,6 @@ class KwitansiController extends Controller
             'model' => $model,
         ]);
     }
-
     public function actionCetakKwitansi($hash_data)
     {
         // $model = $this->findModel($id_kwitansi);
@@ -122,7 +119,15 @@ class KwitansiController extends Controller
 
         $model = Kwitansi::findOne(['hash_data'=>$hash_data]);
         // $model = $this->cetakSuratsakit($hash_data);
+        $print = Yii::$app->user->id; //mendapatkan id user
 
+        $model->load(Yii::$app->request->post()); //ketika tombol ditekan mengubah isi dari field status yang awal nya 1 (belum verify) menjadi 2 (verify)
+        $model->status_cetak=2; //dan field status berita akan berubah menjadi 2 (sudah tercetak)
+        $model->id_media = $print;
+        $model->save(false);
+        
+        Yii::$app->session->setFlash('success',"kwitansi sudah dicetak"); //ini fungsinya kita akan menampilkan alert success 
+        
         return $this->renderPartial('_cetakkwitansi', [
             'model' => $model,
         ]);

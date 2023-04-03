@@ -119,15 +119,31 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format'=>'raw',
                             'value'=>function($model){
                                 $cetak = $model->status_cetak;
-                                if ($cetak == 1) {
-                                    $stat = '<span class="badge bg-warning">Belum Dicetak</span>';
+                                    if ($cetak == 1) {
+                                        $stat = '<span class="badge bg-warning">Belum Dicetak</span>';
+                                    }elseif($cetak == 2) {
+                                        $stat = '<span class="badge bg-success">Sudah Dicetak</span>';
+                                    }else {
+                                        $stat = '';
+                                    }
+
+                                $roleName = Yii::$app->user->identity->role->name; //menampilkan nama sesuai dengan nama role yang dipilih
+
+                                if($roleName=='Media'){ //tampilan untuk verifikator
                                     $tombolcetak =  Html::a('<i class="fas fa-print"></i> Cetak ', ['cetak-kwitansi','hash_data'=>$model->hash_data], ['class' => 'btn btn-block btn-info btn-xs']);
-                                } elseif ($cetak == 2) {
-                                    $stat = '<span class="badge bg-success">Sudah Dicetak</span>';
-                                    $tombolcetak = '';
+                                }else{ 
+                                    $tombolcetak = ' ';
                                 }
 
-                                return $stat.'<br>'.$tombolcetak;
+                                $cetak = $model->status_cetak;
+
+                                if($cetak == 1) {
+                                    $tombol = $tombolcetak;
+                                }else{
+                                    $tombol = ' ';
+                                }
+                                
+                                return $stat.'<br>'.$tombol;
                             }
                         ],
                     
