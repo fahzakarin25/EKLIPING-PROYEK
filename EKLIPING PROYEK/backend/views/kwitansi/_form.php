@@ -90,15 +90,14 @@ $range = range(date('Y'), 2022);
 </div>
 
 <script type="text/javascript">
-    
 
     function getNilaiKontrak(){
 
-        var bulan = $("#bulan").val(); 
+        var bulan = $("#bulan").val(); //parameter
         var tahun = $("#tahun").val(); 
         var id_media = $("#id_media").val(); 
 
-        var baseurl="<?php print Yii::$app->request->baseUrl;?>";
+        var baseurl="<?php print Yii::$app->request->baseUrl;?>"; 
 
         $.post(baseurl+'/media/cek-media?bulan='+bulan+'&tahun='+tahun+'&id_media='+id_media, function( data ) {
             $("#nilai_kontrak").val(data.nilai_kontrak); 
@@ -118,10 +117,10 @@ $range = range(date('Y'), 2022);
         var harga_perberita = $('#harga_perberita').val();
         var jumlah_berita = $('#jumlah_berita').val();
 
-        if (jumlah_berita < 30) {
-            var total_bayar = jumlah_berita * harga_perberita;
+        if (jumlah_berita < 30) { //jumlah berita kecil dari 30 buah berita
+            var total_bayar = jumlah_berita * harga_perberita; //maka total yang harus di beri dgn jumlah berita dikali dengan harga perberita
         } else{
-            var total_bayar = nilai_kontrak;
+            var total_bayar = nilai_kontrak; //jika lebih dari 30 maka total bayar yang dilakukan sama dengan nilai kontrak nya
         }
 
         $('#total_bayar').val(total_bayar);

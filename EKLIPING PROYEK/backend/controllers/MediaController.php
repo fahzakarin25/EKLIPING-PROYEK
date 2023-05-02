@@ -133,7 +133,7 @@ class MediaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionCekMedia($bulan,$tahun,$id_media)
+    public function actionCekMedia($bulan,$tahun,$id_media) //function ada di script js form kwitansi
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 

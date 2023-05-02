@@ -63,12 +63,12 @@ class Kwitansi extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getNamaMedia()
+    public function getNamaMedia()//berelasi dengan tabel media
     {
         return $this->hasOne(Media::className(), ['id_media' => 'id_media']);
     }
 
-    public function penyebut($total_bayar) {
+    public function penyebut($total_bayar) { //dalam mencetak kwitansi terdapat tulisan total bayar
         $nilai = abs($total_bayar);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
         $temp = "";
@@ -96,7 +96,7 @@ class Kwitansi extends \yii\db\ActiveRecord
         return $temp;
     }
 
-    public function terbilang($total_bayar) {
+    public function terbilang($total_bayar) { //dalam mencetak kwitansi terdapat angka total bayar
         if($total_bayar<0) {
             $hasil = "minus ". trim($this->penyebut($total_bayar));
         } else {
