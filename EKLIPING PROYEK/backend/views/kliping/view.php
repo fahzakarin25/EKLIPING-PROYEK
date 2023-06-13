@@ -100,12 +100,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <?php
+                        <?php
                             $root_folder = Yii::getAlias('@root');
                             $gambar = Html::img($root_folder . $model->lokasi_upload, ['class' => 'img-responsive']);
 
                             echo $gambar;
-                            ?>
+                        ?>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use backend\models\KategoriKliping;
+use backend\models\Media;
 
 /** @var yii\web\View $this */
 /** @var backend\models\KlipingSearch $model */
@@ -49,7 +50,18 @@ use backend\models\KategoriKliping;
                     ?>
                 </div>
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'media') ?>
+                    <!-- ?= $form->field($model, 'media') ?> -->
+                    <?php
+                        $datamedia = (new Media)->getDataMedia();
+                        echo $form->field($model, 'media')->label('Media')->widget(Select2::classname(), [
+                            'data' => $datamedia,
+                            'language' => 'id',
+                            'options' => ['placeholder' => '-- Pilih Media --', 'class' => 'form-control'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);
+                    ?>
                 </div>
             </div>
         </div>

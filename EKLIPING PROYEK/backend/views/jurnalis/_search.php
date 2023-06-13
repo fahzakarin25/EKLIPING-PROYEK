@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Media;
+use kartik\select2\Select2;
 
 /** @var yii\web\View $this */
 /** @var backend\models\JurnalisSearch $model */
@@ -23,7 +25,18 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'nama_jurnalis') ?>
                 </div>
                 <div class="col-sm-6">
-                    <?php echo $form->field($model, 'media_jurnalis') ?>
+                    <!-- ?php echo $form->field($model, 'media_jurnalis') ?> -->
+                    <?php
+                        $datamedia = (new Media)->getDataMedia();
+                        echo $form->field($model, 'media_jurnalis')->label('Media')->widget(Select2::classname(), [
+                            'data' => $datamedia,
+                            'language' => 'id',
+                            'options' => ['placeholder' => '-- Pilih Media --','class'=>'form-control'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);
+                    ?> 
                 </div>
             </div>
         </div>

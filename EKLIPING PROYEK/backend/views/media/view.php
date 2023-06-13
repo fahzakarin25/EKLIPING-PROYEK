@@ -62,6 +62,33 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     ?>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>Nilai Kontrak</td>
+                                                <td>
+                                                    <?php 
+                                                        $jnilai= $model->nilai_kontrak;
+                                                        echo $jnilai;
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Minimal Berita</td>
+                                                <td>
+                                                    <?php 
+                                                        $minimal= $model->minimal_berita;
+                                                        echo $minimal;
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Harga Perberita</td>
+                                                <td>
+                                                    <?php 
+                                                        $harga= $model->harga_perberita;
+                                                        echo $harga;
+                                                    ?>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
